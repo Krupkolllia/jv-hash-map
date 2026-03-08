@@ -12,20 +12,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     private final float loadFactor;
     private int threshold;
 
-    static class Node<K, V> {
-        private final int hash;
-        private final K key;
-        private V value;
-        private Node<K, V> next;
-
-        Node(int hash, K key, V value, Node<K,V> next) {
-            this.hash = hash;
-            this.key = key;
-            this.value = value;
-            this.next = next;
-        }
-    }
-
     public MyHashMap(int initialCapacity, float loadFactor) {
         this.capacity = Math.max(initialCapacity, DEFAULT_CAPACITY);
         this.loadFactor = loadFactor;
@@ -92,6 +78,20 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     @Override
     public int getSize() {
         return size;
+    }
+
+    static class Node<K, V> {
+        private final int hash;
+        private final K key;
+        private V value;
+        private Node<K, V> next;
+
+        Node(int hash, K key, V value, Node<K,V> next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
     }
 
     private int calculateThreshold(int capacity, float loadFactor) {
